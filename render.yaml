@@ -18,6 +18,12 @@ services:
         sync: false
       - key: CREDIT
         sync: false
+      - key: CLASSPLUS_EMAIL
+        value: saun789.9@gmail.com
+      - key: CLASSPLUS_PASSWORD
+        sync: false
+      - key: CLASSPLUS_LOGIN_URL
+        value: https://web.classplusapp.com/api/login
       #- key: WEBHOOK
         #sync: false
       - key: PORT

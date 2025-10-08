@@ -1,5 +1,5 @@
 <h1 align="center">
-  ✨ SAINI DRM Bot ✨
+  ✨ SANJU DRM Bot ✨
 </h1>
 
 <p align="center">
@@ -8,8 +8,8 @@
 
 ---
 
-> 🔐 **Note:** CP DRM supported — Minimum quality **360p**  
-> 🚫 **Do not remove the credit tag**
+> 🔐 Note: CP DRM supported — Minimum quality 360p  
+> 🚫 Do not remove the credit tag
 
 ---
 
@@ -25,14 +25,14 @@
 
 ## 🚀 Deployment Process
 
-🎬 **Watch Full Deployment Tutorial:**  
+🎬 Watch Full Deployment Tutorial:  
 [![YouTube Video](https://img.shields.io/badge/Watch%20on-YouTube-red?style=for-the-badge&logo=youtube)](https://youtu.be/PYDtSTM6w44?si=noKPl7o4iU9SR_TO)
 
 ### Step-by-Step:
-1. **Fork** the Repository  
-2. **Edit `vars.py`** — Fill in your `API_ID` and `API_HASH`  
-3. **Edit `README.md`** — Change the deploy button links to point to your own fork  
-4. Choose any platform and **Deploy** directly using the buttons below:
+1. Fork the Repository  
+2. Edit `vars.py` — Fill in your `API_ID` and `API_HASH`  
+3. Edit `README.md` — Change the deploy button links to point to your own fork  
+4. Choose any platform and Deploy directly using the buttons below:
 
 ---
 
