@@ -53,19 +53,19 @@ def get_mps_and_keys3(api_url):
     mpd = response_json.get('url')
     return mpd
 
-def fetch_classplus_token():
+def fetch_classplus_token(email: str = None, password: str = None, login_url: str = None):
     """
     Attempt to auto-generate/fetch the Classplus token using email/password.
-    Environment variables required:
-      - CLASSPLUS_EMAIL
-      - CLASSPLUS_PASSWORD
-      - CLASSPLUS_LOGIN_URL (optional; defaults to a placeholder)
-    Expected response JSON shape: {"token": "<value>"} or {"access_token": "<value>"}
+    Priority of credentials:
+      1) Function arguments (email, password, login_url)
+      2) Environment variables (CLASSPLUS_EMAIL, CLASSPLUS_PASSWORD, CLASSPLUS_LOGIN_URL)
+
+    Expected response JSON shape: {"token": "<value>"} or {"access_token": "<value>"} or {"data": {"token": "<value>"}}.
     On success, updates globals.cptoken and returns the token string; otherwise returns None.
     """
-    email = os.getenv("CLASSPLUS_EMAIL", "")
-    password = os.getenv("CLASSPLUS_PASSWORD", "")
-    login_url = os.getenv("CLASSPLUS_LOGIN_URL", "https://web.classplusapp.com/api/login")
+    email = email or os.getenv("CLASSPLUS_EMAIL", "")
+    password = password or os.getenv("CLASSPLUS_PASSWORD", "")
+    login_url = login_url or os.getenv("CLASSPLUS_LOGIN_URL", "https://web.classplusapp.com/api/login")
 
     if not email or not password:
         return None
@@ -86,6 +86,8 @@ def fetch_classplus_token():
         if token:
             globals.cptoken = token
             return token
+        return None
+    except Exception:
         return None
     except Exception:
         return None

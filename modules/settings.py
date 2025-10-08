@@ -69,6 +69,7 @@ def register_settings_handlers(bot):
         first_name = callback_query.from_user.first_name
         caption = f"✨ **Welcome [{first_name}](tg://user?id={user_id})\nChoose Button to set Token**"
         keyboard = InlineKeyboardMarkup([
+            [InlineKeyboardButton("⚡ Classplus Auto", callback_data="cp_auto_token_command")],
             [InlineKeyboardButton("Classplus", callback_data="cp_token_command")],
             [InlineKeyboardButton("Physics Wallah", callback_data="pw_token_command"), InlineKeyboardButton("Carrerwill", callback_data="cw_token_command")],
             [InlineKeyboardButton("🔙 Back to Settings", callback_data="setttings")]
@@ -191,12 +192,7 @@ def register_settings_handlers(bot):
     async def handle_token(client, callback_query):
         user_id = callback_query.from_user.id
         keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("🔙 Back to Settings", callback_data="set_token_command")]])
-        # Try auto-fetch using environment credentials
-        token = fetch_classplus_token()
-        if token:
-            await callback_query.message.edit(f"✅ Classplus Token auto-fetched!\n\n<blockquote expandable>`{token}`</blockquote>", reply_markup=keyboard)
-            return
-        # Fallback to manual input if auto-fetch fails
+        # Manual entry of token
         editable = await callback_query.message.edit("**Send Classplus Token**", reply_markup=keyboard)
         input_msg = await bot.listen(editable.chat.id)
         try:
@@ -206,6 +202,35 @@ def register_settings_handlers(bot):
             await editable.edit(f"<b>❌ Failed to set Classplus Token:</b>\n<blockquote expandable>{str(e)}</blockquote>", reply_markup=keyboard)
         finally:
             await input_msg.delete()
+
+    @bot.on_callback_query(filters.regex("cp_auto_token_command"))
+    async def handle_auto_token(client, callback_query):
+        user_id = callback_query.from_user.id
+        keyboard_back = InlineKeyboardMarkup([[InlineKeyboardButton("🔙 Back to Settings", callback_data="set_token_command")]])
+        # Ask for email
+        editable = await callback_query.message.edit("**Enter your Classplus Email**", reply_markup=keyboard_back)
+        email_msg = await bot.listen(editable.chat.id)
+        email = email_msg.text.strip() if email_msg.text else ""
+        # Ask for password
+        await email_msg.delete()
+        editable = await callback_query.message.edit("**Enter your Classplus Password**\n<blockquote>It will be deleted after reading.</blockquote>", reply_markup=keyboard_back)
+        pwd_msg = await bot.listen(editable.chat.id)
+        password = pwd_msg.text.strip() if pwd_msg.text else ""
+        await pwd_msg.delete()
+        # Optional: custom login URL
+        editable = await callback_query.message.edit("Send custom Login URL or /d to use default", reply_markup=keyboard_back)
+        url_msg = await bot.listen(editable.chat.id)
+        login_url = None if url_msg.text.lower() == "/d" else url_msg.text.strip()
+        await url_msg.delete()
+        # Try to fetch
+        try:
+            token = fetch_classplus_token(email=email, password=password, login_url=login_url)
+            if token:
+                await callback_query.message.edit(f"✅ Classplus Token generated!\n\n<blockquote expandable>`{token}`</blockquote>", reply_markup=keyboard_back)
+            else:
+                await callback_query.message.edit("❌ Failed to auto-generate Classplus Token.\n<blockquote>Check credentials or login URL and try again.</blockquote>", reply_markup=keyboard_back)
+        except Exception as e:
+            await callback_query.message.edit(f"❌ Error while generating token:\n<blockquote expandable>{str(e)}</blockquote>", reply_markup=keyboard_back)
 # .....,.....,.......,...,.......,....., .....,.....,.......,...,.......,.....,
     @bot.on_callback_query(filters.regex("pw_token_command"))
     async def handle_token(client, callback_query):
