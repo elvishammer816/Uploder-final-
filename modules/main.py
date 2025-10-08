@@ -26,6 +26,7 @@ from broadcast import broadcast_handler, broadusers_handler
 from authorisation import add_auth_user, list_auth_users, remove_auth_user
 from youtube_handler import ytm_handler, y2t_handler, getcookies_handler, cookies_handler
 from vars import API_ID, API_HASH, BOT_TOKEN, OWNER, CREDIT, AUTH_USERS, TOTAL_USERS, cookies_file_path
+from utils import fetch_classplus_token
 # .....,.....,.......,...,.......,....., .....,.....,.......,...,.......,.....,
 
 # Initialize the bot
@@ -243,12 +244,12 @@ async def call_text_to_txt(bot: Client, m: Message):
 async def call_y2t_handler(bot: Client, m: Message):
     await y2t_handler(bot, m)
 
-# .....,.....,.......,...,.......,....., .....,.....,.......,...,.......,.....,
+# .....,.....,.......,...,.......,.....,
 @bot.on_message(filters.command(["ytm"]))
 async def call_ytm_handler(bot: Client, m: Message):
     await ytm_handler(bot, m)
 
-# .....,.....,.......,...,.......,....., .....,.....,.......,...,.......,.....
+# .....,.....,.......,...,.......,.....,
 @bot.on_message(filters.command("getcookies") & filters.private)
 async def call_getcookies_handler(client: Client, m: Message):
     await getcookies_handler(client, m)
@@ -301,5 +302,8 @@ def reset_and_set_commands():
 if __name__ == "__main__":
     reset_and_set_commands()
     notify_owner() 
+    # Auto-fetch Classplus token on startup if not set
+    if globals.cptoken in ("cptoken", "", None):
+        fetch_classplus_token()
 
 bot.run()

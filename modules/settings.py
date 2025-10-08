@@ -4,6 +4,7 @@ from pyromod import listen
 from pyrogram import Client, filters
 from pyrogram.types.messages_and_media import message
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, InputMediaPhoto
+from utils import fetch_classplus_token
 
 # .....,.....,.......,...,.......,....., .....,.....,.......,...,.......,.....,
 def register_settings_handlers(bot):
@@ -190,6 +191,12 @@ def register_settings_handlers(bot):
     async def handle_token(client, callback_query):
         user_id = callback_query.from_user.id
         keyboard = InlineKeyboardMarkup([[InlineKeyboardButton("🔙 Back to Settings", callback_data="set_token_command")]])
+        # Try auto-fetch using environment credentials
+        token = fetch_classplus_token()
+        if token:
+            await callback_query.message.edit(f"✅ Classplus Token auto-fetched!\n\n<blockquote expandable>`{token}`</blockquote>", reply_markup=keyboard)
+            return
+        # Fallback to manual input if auto-fetch fails
         editable = await callback_query.message.edit("**Send Classplus Token**", reply_markup=keyboard)
         input_msg = await bot.listen(editable.chat.id)
         try:
