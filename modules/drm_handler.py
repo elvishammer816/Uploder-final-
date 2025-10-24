@@ -122,11 +122,11 @@ async def drm_handler(bot: Client, m: Message):
                 other_count += 1
                     
     if not links:
-        await m.reply_text("<b>🔹Invalid Input.</b>")
+        await m.reply_text("<b>馃敼Invalid Input.</b>")
         return
 
     if m.document:
-        editable = await m.reply_text(f"**Total 🔗 links found are {len(links)}\n<blockquote>•PDF : {pdf_count}      •V2 : {v2_count}\n•Img : {img_count}      •YT : {yt_count}\n•zip : {zip_count}       •m3u8 : {m3u8_count}\n•drm : {drm_count}      •Other : {other_count}\n•mpd : {mpd_count}</blockquote>\nSend From where you want to download**")
+        editable = await m.reply_text(f"**Total 馃敆 links found are {len(links)}\n<blockquote>鈥DF : {pdf_count}      鈥2 : {v2_count}\n鈥mg : {img_count}      鈥T : {yt_count}\n鈥ip : {zip_count}       鈥3u8 : {m3u8_count}\n鈥rm : {drm_count}      鈥ther : {other_count}\n鈥pd : {mpd_count}</blockquote>\nSend From where you want to download**")
         try:
             input0: Message = await bot.listen(editable.chat.id, timeout=20)
             raw_text = input0.text
@@ -135,9 +135,9 @@ async def drm_handler(bot: Client, m: Message):
             raw_text = '1'
     
         if int(raw_text) > len(links) :
-            await editable.edit(f"🔹**Enter number in range of Index (01-{len(links)})**")
+            await editable.edit(f"馃敼**Enter number in range of Index (01-{len(links)})**")
             processing_request = False  # Reset the processing flag
-            await m.reply_text("🔹**Processing Cancled......  **")
+            await m.reply_text("馃敼**Processing Cancled......  **")
             return
 
         await editable.edit(f"**Enter Batch Name or send /d**")
@@ -153,7 +153,7 @@ async def drm_handler(bot: Client, m: Message):
         else:
             b_name = raw_text0
 
-        await editable.edit("__**⚠️Provide the Channel ID or send /d__\n\n<blockquote><i>🔹 Make me an admin to upload.\n🔸Send /id in your channel to get the Channel ID.\n\nExample: Channel ID = -100XXXXXXXXXXX</i></blockquote>\n**")
+        await editable.edit("__**鈿狅笍Provide the Channel ID or send /d__\n\n<blockquote><i>馃敼 Make me an admin to upload.\n馃敻Send /id in your channel to get the Channel ID.\n\nExample: Channel ID = -100XXXXXXXXXXX</i></blockquote>\n**")
         try:
             input7: Message = await bot.listen(editable.chat.id, timeout=20)
             raw_text7 = input7.text
@@ -175,7 +175,7 @@ async def drm_handler(bot: Client, m: Message):
             b_name = '**Link Input**'
             await m.delete()
         else:
-            editable = await m.reply_text(f"╭━━━━❰ᴇɴᴛᴇʀ ʀᴇꜱᴏʟᴜᴛɪᴏɴ❱━━➣ \n┣━━⪼ send `144`  for 144p\n┣━━⪼ send `240`  for 240p\n┣━━⪼ send `360`  for 360p\n┣━━⪼ send `480`  for 480p\n┣━━⪼ send `720`  for 720p\n┣━━⪼ send `1080` for 1080p\n╰━━⌈⚡[🦋`{CREDIT}`🦋]⚡⌋━━➣ ")
+            editable = await m.reply_text(f"鈺攣鈹佲攣鈹佲澃岽嚿瘁礇岽囀€ 蕗岽囮湵岽徥熱礈岽浬磸纱鉂扁攣鈹佲灒 \n鈹ｂ攣鈹佲 send `144`  for 144p\n鈹ｂ攣鈹佲 send `240`  for 240p\n鈹ｂ攣鈹佲 send `360`  for 360p\n鈹ｂ攣鈹佲 send `480`  for 480p\n鈹ｂ攣鈹佲 send `720`  for 720p\n鈹ｂ攣鈹佲 send `1080` for 1080p\n鈺扳攣鈹佲寛鈿馃`{CREDIT}`馃]鈿♀寢鈹佲攣鉃� ")
             input2: Message = await bot.listen(editable.chat.id, filters=filters.text & filters.user(m.from_user.id))
             raw_text2 = input2.text
             quality = f"{raw_text2}p"
@@ -212,18 +212,18 @@ async def drm_handler(bot: Client, m: Message):
 #........................................................................................................................................................................................
     try:
         if m.document and raw_text == "1":
-            batch_message = await bot.send_message(chat_id=channel_id, text=f"<blockquote><b>🎯Target Batch : {b_name}</b></blockquote>")
+            batch_message = await bot.send_message(chat_id=channel_id, text=f"<blockquote><b>馃幆Target Batch : {b_name}</b></blockquote>")
             if "/d" not in raw_text7:
-                await bot.send_message(chat_id=m.chat.id, text=f"<blockquote><b><i>🎯Target Batch : {b_name}</i></b></blockquote>\n\n🔄 Your Task is under processing, please check your Set Channel📱. Once your task is complete, I will inform you 📩")
+                await bot.send_message(chat_id=m.chat.id, text=f"<blockquote><b><i>馃幆Target Batch : {b_name}</i></b></blockquote>\n\n馃攧 Your Task is under processing, please check your Set Channel馃摫. Once your task is complete, I will inform you 馃摡")
                 await bot.pin_chat_message(channel_id, batch_message.id)
                 message_id = batch_message.id
                 pinning_message_id = message_id + 1
                 await bot.delete_messages(channel_id, pinning_message_id)
         else:
              if "/d" not in raw_text7:
-                await bot.send_message(chat_id=m.chat.id, text=f"<blockquote><b><i>🎯Target Batch : {b_name}</i></b></blockquote>\n\n🔄 Your Task is under processing, please check your Set Channel📱. Once your task is complete, I will inform you 📩")
+                await bot.send_message(chat_id=m.chat.id, text=f"<blockquote><b><i>馃幆Target Batch : {b_name}</i></b></blockquote>\n\n馃攧 Your Task is under processing, please check your Set Channel馃摫. Once your task is complete, I will inform you 馃摡")
     except Exception as e:
-        await m.reply_text(f"**Fail Reason »**\n<blockquote><i>{e}</i></blockquote>\n\n✦𝐁𝐨𝐭 𝐌𝐚𝐝𝐞 𝐁𝐲 ✦ {CREDIT}🌟`")
+        await m.reply_text(f"**Fail Reason 禄**\n<blockquote><i>{e}</i></blockquote>\n\n鉁︷潗侌潗潗� 饾悓饾悮饾悵饾悶 饾悂饾惒 鉁� {CREDIT}馃専`")
 
 #........................................................................................................................................................................................
     failed_count = 0
@@ -232,7 +232,7 @@ async def drm_handler(bot: Client, m: Message):
     try:
         for i in range(arg-1, len(links)):
             if globals.cancel_requested:
-                await m.reply_text("🚦**STOPPED**🚦")
+                await m.reply_text("馃殾**STOPPED**馃殾")
                 globals.processing_request = False
                 globals.cancel_requested = False
                 return
@@ -296,7 +296,7 @@ async def drm_handler(bot: Client, m: Message):
                 url = f"https://head-micheline-botupdatevip-f1804c58.koyeb.app/get_keys?url={url}@botupdatevip4u&user_id={user_id}"
                 result = helper.get_mps_and_keys2(url)
                 if result is None:
-                    await m.reply_text(f"❌ Token failed. Trying next one...")
+                    await m.reply_text(f"鉂� Token failed. Trying next one...")
                     time.sleep(10)
                     result = helper.get_mps_and_keys2(url)                
                 mpd, keys = result
@@ -312,7 +312,7 @@ async def drm_handler(bot: Client, m: Message):
             elif 'videos.classplusapp' in url or "tencdn.classplusapp" in url or "webvideos.classplusapp.com" in url:
                 result = helper.get_mps_and_keys3(url)
                 if result is None:
-                    await m.reply_text(f"❌ Token failed. Trying next one...")
+                    await m.reply_text(f"鉂� Token failed. Trying next one...")
                     time.sleep(10)
                     result = helper.get_mps_and_keys3(url)
                 mpd = result    
@@ -326,7 +326,7 @@ async def drm_handler(bot: Client, m: Message):
                 url = f"https://head-micheline-botupdatevip-f1804c58.koyeb.app/get_keys?url={url}@botupdatevip4u&user_id={user_id}"
                 result = helper.get_mps_and_keys2(url)
                 if result is None:
-                    await m.reply_text(f"❌ Token failed. Trying next one...")
+                    await m.reply_text(f"鉂� Token failed. Trying next one...")
                     time.sleep(10)
                     result = helper.get_mps_and_keys2(url)                
                 mpd, keys = result
@@ -372,42 +372,42 @@ async def drm_handler(bot: Client, m: Message):
                 else:
                     if topic == "/yes":
                         if caption == "/cc1":
-                            cc = f'[🎥]Vid Id : {str(count).zfill(3)}\n**Video Title :** `{v_name} [{res}p].mkv`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by➤**{CR}\n'
-                            cc1 = f'[📕]Pdf Id : {str(count).zfill(3)}\n**File Title :** `{v_name}.pdf`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by➤**{CR}\n'
-                            cczip = f'[📁]Zip Id : {str(count).zfill(3)}\n**Zip Title :** `{v_name}.zip`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by➤**{CR}\n'
-                            ccimg = f'[🖼️]Img Id : {str(count).zfill(3)}\n**Img Title :** `{v_name}.jpg`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by➤**{CR}\n'
-                            cchtml = f'[🌐]Html Id : {str(count).zfill(3)}\n**Html Title :** `{v_name}.html`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by➤**{CR}\n'
-                            ccyt = f'[🎥]Vid Id : {str(count).zfill(3)}\n**Video Title :** `{v_name}.mp4`\n<a href="{url}">__**Click Here to Watch Stream**__</a>\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by➤**{CR}\n'
-                            ccm = f'[🎵]Mp3 Id : {str(count).zfill(3)}\n**Audio Title :** `{v_name}.mp3`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by➤**{CR}\n'
+                            cc = f'[馃帴]Vid Id : {str(count).zfill(3)}\n**Video Title :** `{v_name} [{res}p].mkv`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by鉃�**{CR}\n'
+                            cc1 = f'[馃摃]Pdf Id : {str(count).zfill(3)}\n**File Title :** `{v_name}.pdf`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by鉃�**{CR}\n'
+                            cczip = f'[馃搧]Zip Id : {str(count).zfill(3)}\n**Zip Title :** `{v_name}.zip`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by鉃�**{CR}\n'
+                            ccimg = f'[馃柤锔廬Img Id : {str(count).zfill(3)}\n**Img Title :** `{v_name}.jpg`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by鉃�**{CR}\n'
+                            cchtml = f'[馃寪]Html Id : {str(count).zfill(3)}\n**Html Title :** `{v_name}.html`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by鉃�**{CR}\n'
+                            ccyt = f'[馃帴]Vid Id : {str(count).zfill(3)}\n**Video Title :** `{v_name}.mp4`\n<a href="{url}">__**Click Here to Watch Stream**__</a>\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by鉃�**{CR}\n'
+                            ccm = f'[馃幍]Mp3 Id : {str(count).zfill(3)}\n**Audio Title :** `{v_name}.mp3`\n<blockquote><b>Batch Name : {b_name}\nTopic Name : {t_name}</b></blockquote>\n\n**Extracted by鉃�**{CR}\n'
                         elif caption == "/cc2":
-                            cc = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<blockquote><b>⋅ ─  {t_name}  ─ ⋅</b></blockquote>\n\n<b>🎞️ Title :</b> {v_name}\n<b>├── Extention :  {CR} .mkv</b>\n<b>├── Resolution : [{res}]</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
-                            cc1 = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<blockquote><b>⋅ ─  {t_name}  ─ ⋅</b></blockquote>\n\n<b>📁 Title :</b> {v_name}\n<b>├── Extention :  {CR} .pdf</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
-                            cczip = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<blockquote><b>⋅ ─  {t_name}  ─ ⋅</b></blockquote>\n\n<b>📒 Title :</b> {v_name}\n<b>├── Extention :  {CR} .zip</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
-                            ccimg = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<blockquote><b>⋅ ─  {t_name}  ─ ⋅</b></blockquote>\n\n<b>🖼️ Title :</b> {v_name}\n<b>├── Extention :  {CR} .jpg</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
-                            ccm = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<blockquote><b>⋅ ─  {t_name}  ─ ⋅</b></blockquote>\n\n<b>🎵 Title :</b> {v_name}\n<b>├── Extention :  {CR} .mp3</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
-                            cchtml = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<blockquote><b>⋅ ─  {t_name}  ─ ⋅</b></blockquote>\n\n<b>🌐 Title :</b> {v_name}\n<b>├── Extention :  {CR} .html</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
+                            cc = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<blockquote><b>鈰� 鈹€  {t_name}  鈹€ 鈰�</b></blockquote>\n\n<b>馃帪锔� Title :</b> {v_name}\n<b>鈹溾攢鈹€ Extention :  {CR} .mkv</b>\n<b>鈹溾攢鈹€ Resolution : [{res}]</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
+                            cc1 = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<blockquote><b>鈰� 鈹€  {t_name}  鈹€ 鈰�</b></blockquote>\n\n<b>馃搧 Title :</b> {v_name}\n<b>鈹溾攢鈹€ Extention :  {CR} .pdf</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
+                            cczip = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<blockquote><b>鈰� 鈹€  {t_name}  鈹€ 鈰�</b></blockquote>\n\n<b>馃搾 Title :</b> {v_name}\n<b>鈹溾攢鈹€ Extention :  {CR} .zip</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
+                            ccimg = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<blockquote><b>鈰� 鈹€  {t_name}  鈹€ 鈰�</b></blockquote>\n\n<b>馃柤锔� Title :</b> {v_name}\n<b>鈹溾攢鈹€ Extention :  {CR} .jpg</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
+                            ccm = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<blockquote><b>鈰� 鈹€  {t_name}  鈹€ 鈰�</b></blockquote>\n\n<b>馃幍 Title :</b> {v_name}\n<b>鈹溾攢鈹€ Extention :  {CR} .mp3</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
+                            cchtml = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<blockquote><b>鈰� 鈹€  {t_name}  鈹€ 鈰�</b></blockquote>\n\n<b>馃寪 Title :</b> {v_name}\n<b>鈹溾攢鈹€ Extention :  {CR} .html</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
                         else:
-                            cc = f'<blockquote><b>⋅ ─ {t_name} ─ ⋅</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} [{res}p] .mkv'
-                            cc1 = f'<blockquote><b>⋅ ─ {t_name} ─ ⋅</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} .pdf'
-                            cczip = f'<blockquote><b>⋅ ─ {t_name} ─ ⋅</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} .zip'
-                            ccimg = f'<blockquote><b>⋅ ─ {t_name} ─ ⋅</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} .jpg'
-                            ccm = f'<blockquote><b>⋅ ─ {t_name} ─ ⋅</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} .mp3'
-                            cchtml = f'<blockquote><b>⋅ ─ {t_name} ─ ⋅</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} .html'
+                            cc = f'<blockquote><b>鈰� 鈹€ {t_name} 鈹€ 鈰�</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} [{res}p] .mkv'
+                            cc1 = f'<blockquote><b>鈰� 鈹€ {t_name} 鈹€ 鈰�</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} .pdf'
+                            cczip = f'<blockquote><b>鈰� 鈹€ {t_name} 鈹€ 鈰�</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} .zip'
+                            ccimg = f'<blockquote><b>鈰� 鈹€ {t_name} 鈹€ 鈰�</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} .jpg'
+                            ccm = f'<blockquote><b>鈰� 鈹€ {t_name} 鈹€ 鈰�</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} .mp3'
+                            cchtml = f'<blockquote><b>鈰� 鈹€ {t_name} 鈹€ 鈰�</b></blockquote>\n<b>{str(count).zfill(3)}.</b> {v_name} .html'
                     else:
                         if caption == "/cc1":
-                            cc = f'[🎥]Vid Id : {str(count).zfill(3)}\n**Video Title :** `{name1} [{res}p].mkv`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by➤**{CR}\n'
-                            cc1 = f'[📕]Pdf Id : {str(count).zfill(3)}\n**File Title :** `{name1}.pdf`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by➤**{CR}\n'
-                            cczip = f'[📁]Zip Id : {str(count).zfill(3)}\n**Zip Title :** `{name1}.zip`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by➤**{CR}\n' 
-                            ccimg = f'[🖼️]Img Id : {str(count).zfill(3)}\n**Img Title :** `{name1}.jpg`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by➤**{CR}\n'
-                            ccm = f'[🎵]Audio Id : {str(count).zfill(3)}\n**Audio Title :** `{name1}.mp3`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by➤**{CR}\n'
-                            cchtml = f'[🌐]Html Id : {str(count).zfill(3)}\n**Html Title :** `{name1}.html`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by➤**{CR}\n'
+                            cc = f'[馃帴]Vid Id : {str(count).zfill(3)}\n**Video Title :** `{name1} [{res}p].mkv`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by鉃�**{CR}\n'
+                            cc1 = f'[馃摃]Pdf Id : {str(count).zfill(3)}\n**File Title :** `{name1}.pdf`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by鉃�**{CR}\n'
+                            cczip = f'[馃搧]Zip Id : {str(count).zfill(3)}\n**Zip Title :** `{name1}.zip`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by鉃�**{CR}\n' 
+                            ccimg = f'[馃柤锔廬Img Id : {str(count).zfill(3)}\n**Img Title :** `{name1}.jpg`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by鉃�**{CR}\n'
+                            ccm = f'[馃幍]Audio Id : {str(count).zfill(3)}\n**Audio Title :** `{name1}.mp3`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by鉃�**{CR}\n'
+                            cchtml = f'[馃寪]Html Id : {str(count).zfill(3)}\n**Html Title :** `{name1}.html`\n<blockquote><b>Batch Name :</b> {b_name}</blockquote>\n\n**Extracted by鉃�**{CR}\n'
                         elif caption == "/cc2":
-                            cc = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<b>🎞️ Title :</b> {name1}\n<b>├── Extention :  {CR} .mkv</b>\n<b>├── Resolution : [{res}]</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
-                            cc1 = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<b>📁 Title :</b> {name1}\n<b>├── Extention :  {CR} .pdf</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
-                            cczip = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<b>📒 Title :</b> {name1}\n<b>├── Extention :  {CR} .zip</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
-                            ccimg = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<b>🖼️ Title :</b> {name1}\n<b>├── Extention :  {CR} .jpg</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
-                            ccm = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<b>🎵 Title :</b> {name1}\n<b>├── Extention :  {CR} .mp3</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
-                            cchtml = f"——— ✦ {str(count).zfill(3)} ✦ ———\n\n<b>🌐 Title :</b> {name1}\n<b>├── Extention :  {CR} .html</b>\n<blockquote><b>📚 Course : {b_name}</b></blockquote>\n\n**🌟 Extracted By : {CR}**"
+                            cc = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<b>馃帪锔� Title :</b> {name1}\n<b>鈹溾攢鈹€ Extention :  {CR} .mkv</b>\n<b>鈹溾攢鈹€ Resolution : [{res}]</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
+                            cc1 = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<b>馃搧 Title :</b> {name1}\n<b>鈹溾攢鈹€ Extention :  {CR} .pdf</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
+                            cczip = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<b>馃搾 Title :</b> {name1}\n<b>鈹溾攢鈹€ Extention :  {CR} .zip</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
+                            ccimg = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<b>馃柤锔� Title :</b> {name1}\n<b>鈹溾攢鈹€ Extention :  {CR} .jpg</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
+                            ccm = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<b>馃幍 Title :</b> {name1}\n<b>鈹溾攢鈹€ Extention :  {CR} .mp3</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
+                            cchtml = f"鈥斺€斺€� 鉁� {str(count).zfill(3)} 鉁� 鈥斺€斺€擻n\n<b>馃寪 Title :</b> {name1}\n<b>鈹溾攢鈹€ Extention :  {CR} .html</b>\n<blockquote><b>馃摎 Course : {b_name}</b></blockquote>\n\n**馃専 Extracted By : {CR}**"
                         else:
                             cc = f'<b>{str(count).zfill(3)}.</b> {name1} [{res}p] .mkv'
                             cc1 = f'<b>{str(count).zfill(3)}.</b> {name1} .pdf'
@@ -419,21 +419,21 @@ async def drm_handler(bot: Client, m: Message):
                 remaining_links = len(links) - count
                 progress = (count / len(links)) * 100
                 Show = f"<i><b>Video Downloading</b></i>\n<blockquote><b>{str(count).zfill(3)}) {name1}</b></blockquote>" 
-                Show1 = f"<blockquote>🚀𝐏𝐫𝐨𝐠𝐫𝐞𝐬𝐬 » {progress:.2f}%</blockquote>\n┃\n" \
-                        f"┣🔗𝐈𝐧𝐝𝐞𝐱 » {count}/{len(links)}\n┃\n" \
-                        f"╰━🖇️𝐑𝐞𝐦𝐚𝐢𝐧 » {remaining_links}\n" \
-                        f"━━━━━━━━━━━━━━━━━━━━━━━━\n" \
-                        f"<blockquote><b>⚡Dᴏᴡɴʟᴏᴀᴅɪɴɢ Sᴛᴀʀᴛᴇᴅ...⏳</b></blockquote>\n┃\n" \
-                        f'┣💃𝐂𝐫𝐞𝐝𝐢𝐭 » {CR}\n┃\n' \
-                        f"╰━📚𝐁𝐚𝐭𝐜𝐡 » {b_name}\n" \
-                        f"━━━━━━━━━━━━━━━━━━━━━━━━━\n" \
-                        f"<blockquote>📚𝐓𝐢𝐭𝐥𝐞 » {namef}</blockquote>\n┃\n" \
-                        f"┣🍁𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {quality}\n┃\n" \
-                        f'┣━🔗𝐋𝐢𝐧𝐤 » <a href="{link0}">**Original Link**</a>\n┃\n' \
-                        f'╰━━🖇️𝐔𝐫𝐥 » <a href="{url}">**Api Link**</a>\n' \
-                        f"━━━━━━━━━━━━━━━━━━━━━━━━━\n" \
-                        f"🛑**Send** /stop **to stop process**\n┃\n" \
-                        f"╰━✦𝐁𝐨𝐭 𝐌𝐚𝐝𝐞 𝐁𝐲 ✦ {CREDIT}"
+                Show1 = f"<blockquote>馃殌饾悘饾惈饾惃饾悹饾惈饾悶饾惉饾惉 禄 {progress:.2f}%</blockquote>\n鈹僜n" \
+                        f"鈹ｐ煍楌潗堭潗ю潗濔潗烉潗� 禄 {count}/{len(links)}\n鈹僜n" \
+                        f"鈺扳攣馃枃锔忦潗戰潗烉潗︷潗氿潗潗� 禄 {remaining_links}\n" \
+                        f"鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣\n" \
+                        f"<blockquote><b>鈿岽忈础纱薀岽忈磤岽吷瓷� S岽涐磤蕗岽涐磭岽�...鈴�</b></blockquote>\n鈹僜n" \
+                        f'鈹ｐ煉凁潗傪潗潗烉潗濔潗潗� 禄 {CR}\n鈹僜n' \
+                        f"鈺扳攣馃摎饾悂饾悮饾惌饾悳饾悺 禄 {b_name}\n" \
+                        f"鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹乗n" \
+                        f"<blockquote>馃摎饾悡饾悽饾惌饾惀饾悶 禄 {namef}</blockquote>\n鈹僜n" \
+                        f"鈹ｐ煃侌潗愷潗潗氿潗ヰ潗潗潗� 禄 {quality}\n鈹僜n" \
+                        f'鈹ｂ攣馃敆饾悑饾悽饾惂饾悿 禄 <a href="{link0}">**Original Link**</a>\n鈹僜n' \
+                        f'鈺扳攣鈹侌煐囷笍饾悢饾惈饾惀 禄 <a href="{url}">**Api Link**</a>\n' \
+                        f"鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹佲攣鈹乗n" \
+                        f"馃洃**Send** /stop **to stop process**\n鈹僜n" \
+                        f"鈺扳攣鉁︷潗侌潗潗� 饾悓饾悮饾悵饾悶 饾悂饾惒 鉁� {CREDIT}"
 #........................................................................................................................................................................................           
                 if "drive" in url:
                     try:
@@ -558,7 +558,7 @@ async def drm_handler(bot: Client, m: Message):
                     time.sleep(1)
                 
             except Exception as e:
-                await bot.send_message(channel_id, f'⚠️**Downloading Failed**⚠️\n**Name** =>> `{str(count).zfill(3)} {name1}`\n**Url** =>> {url}\n\n<blockquote expandable><i><b>Failed Reason: {str(e)}</b></i></blockquote>', disable_web_page_preview=True)
+                await bot.send_message(channel_id, f'鈿狅笍**Downloading Failed**鈿狅笍\n**Name** =>> `{str(count).zfill(3)} {name1}`\n**Url** =>> {url}\n\n<blockquote expandable><i><b>Failed Reason: {str(e)}</b></i></blockquote>', disable_web_page_preview=True)
                 count += 1
                 failed_count += 1
                 continue
@@ -571,7 +571,7 @@ async def drm_handler(bot: Client, m: Message):
     video_count = v2_count + mpd_count + m3u8_count + yt_count + drm_count + zip_count + other_count
     if m.document:
         if raw_text7 == "/d":
-            await bot.send_message(channel_id, f"<b>-┈━═.•°✅ Completed ✅°•.═━┈-</b>\n<blockquote><b>🎯Batch Name : {b_name}</b></blockquote>\n<blockquote>🔗 Total URLs: {len(links)} \n┃   ┠🔴 Total Failed URLs: {failed_count}\n┃   ┠🟢 Total Successful URLs: {success_count}\n┃   ┃   ┠🎥 Total Video URLs: {video_count}\n┃   ┃   ┠📄 Total PDF URLs: {pdf_count}\n┃   ┃   ┠📸 Total IMAGE URLs: {img_count}</blockquote>\n")
+            await bot.send_message(channel_id, f"<b>-鈹堚攣鈺�.鈥⒙扳渽 Completed 鉁吢扳€�.鈺愨攣鈹�-</b>\n<blockquote><b>馃幆Batch Name : {b_name}</b></blockquote>\n<blockquote>馃敆 Total URLs: {len(links)} \n鈹�   鈹狆煍� Total Failed URLs: {failed_count}\n鈹�   鈹狆煙� Total Successful URLs: {success_count}\n鈹�   鈹�   鈹狆煄� Total Video URLs: {video_count}\n鈹�   鈹�   鈹狆煋� Total PDF URLs: {pdf_count}\n鈹�   鈹�   鈹狆煋� Total IMAGE URLs: {img_count}</blockquote>\n")
         else:
-            await bot.send_message(channel_id, f"<b>-┈━═.•°✅ Completed ✅°•.═━┈-</b>\n<blockquote><b>🎯Batch Name : {b_name}</b></blockquote>\n<blockquote>🔗 Total URLs: {len(links)} \n┃   ┠🔴 Total Failed URLs: {failed_count}\n┃   ┠🟢 Total Successful URLs: {success_count}\n┃   ┃   ┠🎥 Total Video URLs: {video_count}\n┃   ┃   ┠📄 Total PDF URLs: {pdf_count}\n┃   ┃   ┠📸 Total IMAGE URLs: {img_count}</blockquote>\n")
-            await bot.send_message(m.chat.id, f"<blockquote><b>✅ Your Task is completed, please check your Set Channel📱</b></blockquote>")
+            await bot.send_message(channel_id, f"<b>-鈹堚攣鈺�.鈥⒙扳渽 Completed 鉁吢扳€�.鈺愨攣鈹�-</b>\n<blockquote><b>馃幆Batch Name : {b_name}</b></blockquote>\n<blockquote>馃敆 Total URLs: {len(links)} \n鈹�   鈹狆煍� Total Failed URLs: {failed_count}\n鈹�   鈹狆煙� Total Successful URLs: {success_count}\n鈹�   鈹�   鈹狆煄� Total Video URLs: {video_count}\n鈹�   鈹�   鈹狆煋� Total PDF URLs: {pdf_count}\n鈹�   鈹�   鈹狆煋� Total IMAGE URLs: {img_count}</blockquote>\n")
+            await bot.send_message(m.chat.id, f"<blockquote><b>鉁� Your Task is completed, please check your Set Channel馃摫</b></blockquote>")
