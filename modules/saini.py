@@ -20,6 +20,7 @@ from pathlib import Path
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 from base64 import b64decode
+from requests.exceptions import RequestException
 
 def duration(filename):
     result = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
@@ -37,17 +38,34 @@ def get_mps_and_keys(api_url):
     return mpd, keys
 
 def get_mps_and_keys2(api_url):
-    response = requests.get(api_url) 
-    response_json = response.json()
-    mpd = response_json.get('mpd_url')
-    keys = response_json.get('keys')
-    return mpd, keys
+    try:
+        response = requests.get(api_url, timeout=10)
+        response.raise_for_status()  # Raises exception for 4xx/5xx status codes
+        response_json = response.json()
+        mpd = response_json.get('mpd_url')
+        keys = response_json.get('keys')
+        return mpd, keys
+    except RequestException as e:
+        print(f"Request failed: {e}")
+        return None, None
+    except ValueError as e:
+        print(f"JSON decode error: {e}")
+        return None, None
     
 def get_mps_and_keys3(api_url):
-    response = requests.get(api_url)   
-    response_json = response.json()
-    mpd = response_json.get('url')
-    return mpd
+    try:
+        response = requests.get(api_url, timeout=10)
+        response.raise_for_status()  # Raises exception for 4xx/5xx status codes
+        response_json = response.json()
+        mpd = response_json.get('url')
+        return mpd
+    except RequestException as e:
+        print(f"Request failed: {e}")
+        return None
+    except ValueError as e:
+        print(f"JSON decode error: {e}")
+        return None
+
 
 
 def exec(cmd):
@@ -300,7 +318,7 @@ async def download_and_decrypt_video(url, cmd, name, key):
 async def send_vid(bot: Client, m: Message, cc, filename, vidwatermark, thumb, name, prog, channel_id):
     subprocess.run(f'ffmpeg -i "{filename}" -ss 00:00:10 -vframes 1 "{filename}.jpg"', shell=True)
     await prog.delete (True)
-    reply1 = await bot.send_message(channel_id, f"**📩 Uploading Video 📩:-**\n<blockquote>**{name}**</blockquote>")
+    reply1 = await bot.send_message(channel_id, f"**馃摡 Uploading Video 馃摡:-**\n<blockquote>**{name}**</blockquote>")
     reply = await m.reply_text(f"**Generate Thumbnail:**\n<blockquote>**{name}**</blockquote>")
     try:
         if thumb == "/d":
